@@ -53,4 +53,18 @@ stages:
         publishJUnitResults: false
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'test'
-
+        
+- stage: Sonar
+  displayName: Sonar
+  jobs:
+  - job: Run_Scanner
+    displayName: Run Scanner
+    steps:
+    - task: SonarQubePrepare@4
+      inputs:
+        scannerMode: 'Other'
+    - task: SonarQubeAnalyze@4
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300'
+    
