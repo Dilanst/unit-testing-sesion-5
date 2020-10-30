@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Clean And Compile
+- stage: Clean_Compile
   displayName: Clean And Compile
   jobs:
   - job: Clean_Sources
