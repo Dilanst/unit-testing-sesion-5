@@ -11,7 +11,7 @@ pool:
 
 stages:
 - stage: Clean
-  displayName: Clean Sources
+  displayName: Clean Target
   jobs:
   - job: Clean_Sources
     displayName: Clean Sources
