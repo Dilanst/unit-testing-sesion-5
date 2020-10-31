@@ -41,7 +41,7 @@ stages:
         goals: 'compile'
 
 - stage: Test
-  displayName: Runs Tests
+  displayName: Run Tests
   jobs:
   - job: Test_Sources
     displayName: Test Sources
