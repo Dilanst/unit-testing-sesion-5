@@ -52,5 +52,5 @@ stages:
         jdkArchitectureOption: 'x64'
         publishJUnitResults: false
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'surefire:test'
+        goals: 'test'
         
