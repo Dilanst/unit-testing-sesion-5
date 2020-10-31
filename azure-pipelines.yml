@@ -10,8 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Clean_Compile
-  displayName: Clean And Compile
+- stage: Clean
+  displayName: Clean Sources
   jobs:
   - job: Clean_Sources
     displayName: Clean Sources
@@ -25,6 +25,9 @@ stages:
         jdkArchitectureOption: 'x64'
         goals: 'clean'
  
+- stage: Compile
+  displayName: Compile Sources
+  jobs:
   - job: Compile
     displayName: Compile
     steps:
@@ -35,7 +38,7 @@ stages:
         javaHomeOption: 'JDKVersion'
         jdkVersionOption: '1.8'
         jdkArchitectureOption: 'x64'
-        goals: 'package -DskipTests=true'
+        goals: 'compile'
 
 - stage: Test
   displayName: Test
@@ -53,4 +56,18 @@ stages:
         publishJUnitResults: false
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'test'
-        
+
+- stage: Package
+  displayName: Compile Sources
+  jobs:
+  - job: Package
+    displayName: Package
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        mavenOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.8'
+        jdkArchitectureOption: 'x64'
+        goals: 'package -DskipTests=true'      
