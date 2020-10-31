@@ -58,7 +58,7 @@ stages:
         goals: 'test'
 
 - stage: Package
-  displayName: Compile Sources
+  displayName: Package
   jobs:
   - job: Package
     displayName: Package
